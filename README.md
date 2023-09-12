@@ -8,11 +8,17 @@ Interleukin 8 (IL-8) is a chemokine produced by various cell types. This acts as
 Being a chemokine ,  it promotes the immune cell migration for the phagocytosis. These belong to a set of monoclonal antibodies which have become a modern class of medicines used for treating various diseases such as cancer , cardiovascular and inflammation diseases.
 The scFv antibody fragments consist of variable regions of heavy (VH) and light chain (VL) of full antibodies that are joined by a linker sequence.
 
-The model for IL8 is taken from the [PDB](https://www.rcsb.org/structure/2IL8) (PDB ID: 2IL8). This PDB file consists of 30 models, each with a different conformation of IL8 in a 3D structure. We have chosen the first model for our docking.
+The model for IL8 is taken from the [PDB](https://www.rcsb.org/structure/2IL8) (PDB ID: 2IL8). This PDB file consists of 30 models, each with a different conformation of IL8 in a 3D structure. We have chosen the first model for our docking. The PDB library consists of the 3-Dimensional structure of the given protein and all the sequences and mutations of the fragments of the protein. The solution NMR method has been used to experimentally verify the protein structure and so far 30 various different conformers of the same molecule have been shown to exist.
+We use a homology based modeling pattern for this protein which consists of building the given protein based on the atomic resolution models of the constituent amino acids sequences.
 
 ## Global Range Molecular Matching (GRAMM)
 
-GRAMM is a docking web server that maps the intermolecular energy landscape by predicting a spectrum of docking poses corresponding to stable (deep energy minima) and transient (shallow minima) protein interactions. We used the anti-IL8 scFv as the receptor and IL8 as the ligand.
+[GRAMM](https://vakserlab.ku.edu/files_gramm/readme.pdf) is a docking web server that maps the intermolecular energy landscape by predicting a spectrum of docking poses corresponding to stable (deep energy minima) and transient (shallow minima) protein interactions. This program performs an exhaustive comparision in a 6-Dimensional structures through the relative translations and rotations of the molecule. It performs a comprehensive comparision in which it accounts for all the possible orientations and positions of the molecule in study against another known molecule. It simulates the way in which atoms interact with each other when they are at various distances from each other and predict the pose in which the molecule attains the most energitically favourable state when the two interact with each other. It tests against all the available models in the PDB and gives an exhaustive result.
+
+GRAMM does not perform a statistical sampling of the model but produces an exhaustive search against all configurations of the complex and give the one with the best stric fit score.
+
+
+We used the anti-IL8 scFv as the receptor and IL8 as the ligand.
 
 ### Free Docking
 
