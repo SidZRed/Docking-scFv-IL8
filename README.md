@@ -2,39 +2,76 @@
 
 ## Note on protein models
 
-The model for the anti-IL8 scFv (anti-interleukin-8) (single-chain variable fragment) is taken from our [scFv-Modelling](https://github.com/iGEMIISc/scFv-Modelling) repository. In particular, we have chosen the ColabFold model generated with PDB70. We have used ColabFold for a graphic processing unit for folding proteins in a 3-Dimensional format. It has a GDT_TS (Global distance Test) score of 92.4% . This is a rating of the comparision of protein structures with well known amino acid sequences. ColabFold performs a MMseqs-2 based homology search server to find the template of the protein.
+The model for the anti-IL8 scFv (anti-interleukin-8) (single-chain variable fragment) is taken from our [scFv-Modelling](https://github.com/iGEMIISc/scFv-Modelling) repository. In particular, we have chosen the [ColabFold](https://www.nature.com/articles/s41592-022-01488-1) model generated with PDB70. We have used ColabFold for a graphic processing unit for folding proteins in a 3-Dimensional format. It has a GDT_TS [(Global distance Test)](https://en.wikipedia.org/wiki/Global_distance_test) score of 92.4% . This is a rating of the comparision of protein structures with well known amino acid sequences. ColabFold performs a MMseqs-2 based homology search server to find the template of the protein.
 
-Interleukin 8 (IL-8) is a chemokine produced by various cell types. This acts as a mediator of inflammation in the tissues and a potent angiogenic factor. It attracts various kinds of phagocytic cells such as neutrophils, basophils and T-cells to stimulate the phagocytosis of cells and promote angiogenesis.
+Interleukin 8 (IL-8) is a [chemokine](https://www.news-medical.net/health/What-are-Chemokines.aspx) produced by various cell types. This acts as a mediator of inflammation in the tissues and a potent angiogenic factor. It attracts various kinds of phagocytic cells such as neutrophils, basophils and T-cells to stimulate the phagocytosis of cells and promote angiogenesis.
 Being a chemokine ,  it promotes the immune cell migration for the phagocytosis. These belong to a set of monoclonal antibodies which have become a modern class of medicines used for treating various diseases such as cancer , cardiovascular and inflammation diseases.
 The scFv antibody fragments consist of variable regions of heavy (VH) and light chain (VL) of full antibodies that are joined by a linker sequence.
 
-The model for IL8 is taken from the [PDB](https://www.rcsb.org/structure/2IL8) (PDB ID: 2IL8). This PDB file consists of 30 models, each with a different conformation of IL8 in a 3D structure. We have chosen the first model for our docking.
+The model for IL8 is taken from the [PDB](https://www.rcsb.org/structure/2IL8) (PDB ID: 2IL8). This PDB file consists of 30 models, each with a different conformation of IL8 in a 3D structure. We have chosen the first model for our docking. The PDB library consists of the 3-Dimensional structure of the given protein and all the sequences and mutations of the fragments of the protein. The solution NMR method has been used to experimentally verify the protein structure and so far 30 various different conformers of the same molecule have been shown to exist.
+We use a homology based modeling pattern for this protein which consists of building the given protein based on the atomic resolution models of the constituent amino acids sequences.
 
 ## Global Range Molecular Matching (GRAMM)
 
-GRAMM is a docking web server that maps the intermolecular energy landscape by predicting a spectrum of docking poses corresponding to stable (deep energy minima) and transient (shallow minima) protein interactions. We used the anti-IL8 scFv as the receptor and IL8 as the ligand.
+[GRAMM](https://vakserlab.ku.edu/files_gramm/readme.pdf) is a docking web server that maps the intermolecular energy landscape by predicting a spectrum of docking poses corresponding to stable (deep energy minima) and transient (shallow minima) protein interactions. This program performs an exhaustive comparision in a 6-Dimensional structures through the relative translations and rotations of the molecule. It performs a comprehensive comparision in which it accounts for all the possible orientations and positions of the molecule in study against another known molecule. It simulates the way in which atoms interact with each other when they are at various distances from each other and predict the pose in which the molecule attains the most energitically favourable state when the two interact with each other. It tests against all the available models in the PDB and gives an exhaustive result.
+
+GRAMM does not perform a statistical sampling of the model but produces an exhaustive search against all configurations of the complex and give the one with the best steric fit score.
+
+
+We used the anti-IL8 scFv as the receptor and IL8 as the ligand.
 
 ### Free Docking
 
 In a free docking algorithm, a large number of conformations of the two proteins are evaluated to minimize the energy of their interaction. 
+It is a simulation of the behaviour and interaction of the molecule and identification of the potential binding sites of the molecule. 
+
+Steps involved in the process of free docking : 
+* Preparing the ligand and receptor structures, which may require removing water molecules, adding hydrogen atoms, assigning charges, and defining flexible regions. This is done to prepare the molecule for all possible sites of binding.
+* Generating possible poses of the ligand in the binding site of the receptor, which may involve sampling different orientations, conformations, and translations of the ligand.
+* Evaluating the poses based on their energy and/or scoring function, which may include terms for electrostatics, van der Waals, solvation, entropy, and empirical factors. This gives the best configuration of the most stable energy state.
+* Ranking the poses according to their score and selecting the best ones for further analysis or validation.
 
 <img src="https://github.com/iGEMIISc/Docking-scFv-IL8/blob/master/GRAMM%20FreeDocking/model1.gif?raw=true">
 
 ### Template-based Docking
 
 In the template-based method, a search is made from the PDB to identify heterodimer templates for our target. Then, homology modeling is used to map the target sequence onto the template structure.
+This is used to generate template-based structural models of assemblies using close and remote homologs of known 3D structures which are detected through an automated search protocol.
 
 <img src="https://github.com/iGEMIISc/Docking-scFv-IL8/blob/master/GRAMM%20Docking%20With%20Template/model1.gif?raw=true">
 
-We will be taking the top models from both the free docking and template-based docking methods for further analysis. It should be noted that these can not be directly compared as the free docking method results are expressed in terms of shape complementarity while the template-based docking method results are expressed in terms of AACE18 (atomic contact energy) scores.
+The structural modeling of protein interactions in the absence of close homologous templates is a challenging task. Recently, template-based docking methods have emerged to exploit local structural similarities to help ab-initio protocols provide reliable 3D models for protein interactions.
+To efficiently utilize available homologous complexes in the protein data bank (PDB) (24), we have developed a hybrid docking strategy to automatically incorporate the binding interface information into traditional global docking. 
+
+
+We will be taking the top models from both the free docking and template-based docking methods for further analysis. It should be noted that these can not be directly compared as the free docking method results are expressed in terms of shape complementarity while the template-based docking method results are expressed in terms of AACE18 (atomic contact energy) scores. This potential determines the relation between the binding free energy and [SASA](https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/accessible-surface-area) (Solvent Accesible Surface Area) values.
+
+#### AutoDock-
+AutoDock3, a suite of open-source software for docking and virtual screening. AutoDock consists of several programs, such as AutoDock4, which performs the docking calculations using a Lamarckian genetic algorithm and a scoring function that accounts for torsional entropy; AutoGrid4, which pre-calculates the grid maps for the receptor; and AutoDockTools, which provides a graphical user interface for preparing and analyzing the docking inputs and outputs. 
+
+AutoDock hasn't been utilized by us for this protein modelling as it does not provide for appropriate calculations for large molecules of ligands that we have used. It also requires much higher computational and graphical power for running the model which could amount to a significant cost of operation for a large ligand molecule like ours.
+
+Other molecular docking softwares:
+* SwissDock 
+* Mcule
+
+For our nucleic acid modelling , we have used PRODIGY (PROtein binDIng enerGY prediction) software for all the docking and calculations.
+It has the following features:
+* Predicts the binding affinity in PROTEIN-PROTEIN complexes
+* Predicts the binding affinity in PROTEIN-SMALL LIGAND complexes
+* Classification interfaces between biological or crystallographic
+
 
 ### Citations
 
 1. Katchalski-Katzir, E., Shariv, I., Eisenstein, M., Friesem, A.A., Aflalo, C., Vakser, I.A., 1992, Molecular surface recognition: Determination of geometric fit between proteins and their ligands by correlation techniques, Proc. Natl. Acad. Sci. USA, 89:2195-2199.
 2. Vakser, I.A., 1996, Long-distance potentials: An approach to the multiple-minima problem in ligand-receptor interaction, Protein Eng., 9:37-41.
 3. Porter, K. A., Desta, I., Kozakov, D., & Vajda, S. (2019). What method to use for protein–protein docking? Current Opinion in Structural Biology, 55, 1–7.
+4. Rosell M., Fernández-Recio J. Docking approaches for modeling multi-molecular assemblies. Curr. Opin. Struct. Biol. 2020; 64:59–65.
+5. Waterhouse A., Bertoni M., Bienert S., Studer G., Tauriello G., Gumienny R., Heer F.T., de Beer T.A.P., Rempfer C., Bordoli L. et al. . SWISS-MODEL: homology modelling of protein structures and complexes. Nucleic Acids Res. 2018; 46:W296–W303.
 
 ## Analysis of Docking Results using PRODIGY
+
 
 PRODIGY (PROtein binDIng enerGY prediction) is a web server for predicting the binding affinity of protein-protein complexes. We used this tool to analyze the docking results obtained from GRAMM.
 
