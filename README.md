@@ -2,10 +2,10 @@
 
 ## Note on protein models
 
-The model for the anti-IL8 scFv (anti-interleukin-8) (single-chain variable fragment) is taken from our [scFv-Modelling](https://github.com/iGEMIISc/scFv-Modelling) repository. In particular, we have chosen the [ColabFold](https://www.nature.com/articles/s41592-022-01488-1) model generated with PDB70. We have used ColabFold for a graphic processing unit for folding proteins in a 3-Dimensional format. It has a GDT_TS [(Global distance Test)](https://en.wikipedia.org/wiki/Global_distance_test) score of 92.4% . This is a rating of the comparision of protein structures with well known amino acid sequences. ColabFold performs a MMseqs-2 based homology search server to find the template of the protein.
+The model for the [anti-IL8 scFv](https://www.sigmaaldrich.com/IN/en/product/sigma/sab1403974?gclid=Cj0KCQjwmICoBhDxARIsABXkXlI6ew98eAgecIkuhQLG3yxIuc5z9uleawKgM3IWDkxcDMu-zhJ0fV4aAl1xEALw_wcB) (anti-interleukin-8) (single-chain variable fragment) is taken from our [scFv-Modelling](https://github.com/iGEMIISc/scFv-Modelling) repository. In particular, we have chosen the [ColabFold](https://www.nature.com/articles/s41592-022-01488-1) model generated with PDB70. We have used ColabFold for a graphic processing unit for folding proteins in a 3-Dimensional format. It has a GDT_TS [(Global distance Test)](https://en.wikipedia.org/wiki/Global_distance_test) score of 92.4% . This is a rating of the comparision of protein structures with well known amino acid sequences. ColabFold performs a MMseqs-2 based homology search server to find the template of the protein.
 
 Interleukin 8 (IL-8) is a [chemokine](https://www.news-medical.net/health/What-are-Chemokines.aspx) produced by various cell types. This acts as a mediator of inflammation in the tissues and a potent angiogenic factor. It attracts various kinds of phagocytic cells such as neutrophils, basophils and T-cells to stimulate the phagocytosis of cells and promote angiogenesis.
-Being a chemokine ,  it promotes the immune cell migration for the phagocytosis. These belong to a set of monoclonal antibodies which have become a modern class of medicines used for treating various diseases such as cancer , cardiovascular and inflammation diseases.
+Being a chemokine ,  it promotes the immune cell migration for the phagocytosis. These belong to a set of monoclonal antibodies which have become a modern class of medicines used for treating various diseases such as cancer , cardiovascular and inflammation diseases. Interleukin 8 is in culture a 72 amino acid peptide in it's major form when it is secreted by macrophages.
 The scFv antibody fragments consist of variable regions of heavy (VH) and light chain (VL) of full antibodies that are joined by a linker sequence.
 
 The model for IL8 is taken from the [PDB](https://www.rcsb.org/structure/2IL8) (PDB ID: 2IL8). This PDB file consists of 30 models, each with a different conformation of IL8 in a 3D structure. We have chosen the first model for our docking. The PDB library consists of the 3-Dimensional structure of the given protein and all the sequences and mutations of the fragments of the protein. The solution NMR method has been used to experimentally verify the protein structure and so far 30 various different conformers of the same molecule have been shown to exist.
@@ -47,19 +47,25 @@ To efficiently utilize available homologous complexes in the protein data bank (
 We will be taking the top models from both the free docking and template-based docking methods for further analysis. It should be noted that these can not be directly compared as the free docking method results are expressed in terms of shape complementarity while the template-based docking method results are expressed in terms of AACE18 (atomic contact energy) scores. This potential determines the relation between the binding free energy and [SASA](https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/accessible-surface-area) (Solvent Accesible Surface Area) values.
 
 #### AutoDock-
-AutoDock3, a suite of open-source software for docking and virtual screening. AutoDock consists of several programs, such as AutoDock4, which performs the docking calculations using a Lamarckian genetic algorithm and a scoring function that accounts for torsional entropy; AutoGrid4, which pre-calculates the grid maps for the receptor; and AutoDockTools, which provides a graphical user interface for preparing and analyzing the docking inputs and outputs. 
+[AutoDock3](https://autodock.scripps.edu/), a suite of open-source software for docking and virtual screening. AutoDock consists of several programs, such as AutoDock4, which performs the docking calculations using a Lamarckian genetic algorithm and a scoring function that accounts for torsional entropy; AutoGrid4, which pre-calculates the grid maps for the receptor; and AutoDockTools, which provides a graphical user interface for preparing and analyzing the docking inputs and outputs. 
 
-AutoDock hasn't been utilized by us for this protein modelling as it does not provide for appropriate calculations for large molecules of ligands that we have used. It also requires much higher computational and graphical power for running the model which could amount to a significant cost of operation for a large ligand molecule like ours.
+AutoDock hasn't been utilized by us for this protein modelling as it does not provide for appropriate calculations for large molecules of ligands that we have used. It is unable to account for flexibility of cyclic and macro-cyclic ligands. It also requires much higher computational and graphical power for running the model which could amount to a significant cost of operation for a large ligand molecule like ours. Also it often leads to unreliable results when small molecules are docked into flexible binding sites. Since our protein contains a larger sequence (72 in general) of amino acid structure , it is not suitable to use AutoDock directly for docking our protein.
 
 Other molecular docking softwares:
 * SwissDock 
 * Mcule
 
-For our nucleic acid modelling , we have used PRODIGY (PROtein binDIng enerGY prediction) software for all the docking and calculations.
+For our simulation of the binding energy , we have used PRODIGY (PROtein binDIng enerGY prediction) software for all the docking and calculations.
 It has the following features:
 * Predicts the binding affinity in PROTEIN-PROTEIN complexes
 * Predicts the binding affinity in PROTEIN-SMALL LIGAND complexes
 * Classification interfaces between biological or crystallographic
+
+By default, all intermolecular contacts are taken into consideration,
+a molecule being defined as an isolated group of amino acids sharing
+a common chain identifier. In specific cases, for example
+antibody-antigen complexes, some chains should be considered as a
+single molecule. The PRODIGY server implements our simple but highly effective predictive model based on intermolecular contacts and properties derived from non-interface surface.
 
 
 ### Citations
@@ -74,6 +80,7 @@ It has the following features:
 
 
 PRODIGY (PROtein binDIng enerGY prediction) is a web server for predicting the binding affinity of protein-protein complexes. We used this tool to analyze the docking results obtained from GRAMM.
+To analyze the binding affinity, the PRODIGY webserver was employed where the binding affinity within the protein-protein complex is predicted based on contact-based methods. It performs binding affinity analysis based on the calculation of Gibbs free energy ($ΔG$ | kcal $mol^{-1}$ ) and dissociation constant ($K_d$ | $M$).
 
 | Method |  Predicted Binding Affinity <br> $\Delta G$ in $\text{kcal}~\text{mol}^{-1}$ | Predicted Dissociation Constant <br> $K_d$ in $\text{M}$ at $36 \degree\text{C}$ |
 | :---: | :---: | :---: |
