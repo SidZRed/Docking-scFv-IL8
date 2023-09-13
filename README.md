@@ -4,12 +4,21 @@
 
 The model for the [anti-IL8 scFv](https://www.sigmaaldrich.com/IN/en/product/sigma/sab1403974?gclid=Cj0KCQjwmICoBhDxARIsABXkXlI6ew98eAgecIkuhQLG3yxIuc5z9uleawKgM3IWDkxcDMu-zhJ0fV4aAl1xEALw_wcB) (anti-interleukin-8) (single-chain variable fragment) is taken from our [scFv-Modelling](https://github.com/iGEMIISc/scFv-Modelling) repository. In particular, we have chosen the [ColabFold](https://www.nature.com/articles/s41592-022-01488-1) model generated with PDB70. We have used ColabFold for a graphic processing unit for folding proteins in a 3-Dimensional format. It has a GDT_TS [(Global distance Test)](https://en.wikipedia.org/wiki/Global_distance_test) score of 92.4% . This is a rating of the comparision of protein structures with well known amino acid sequences. ColabFold performs a MMseqs-2 based homology search server to find the template of the protein.
 
+<img src="https://github.com/bhuvnaik/Docking-scFv-IL8/assets/144937979/4e203e2f-f5ef-415a-8a01-7231e34e4e92" width="500" height="300">
+
+
 Interleukin 8 (IL-8) is a [chemokine](https://www.news-medical.net/health/What-are-Chemokines.aspx) produced by various cell types. This acts as a mediator of inflammation in the tissues and a potent angiogenic factor. It attracts various kinds of phagocytic cells such as neutrophils, basophils and T-cells to stimulate the phagocytosis of cells and promote angiogenesis.
 Being a chemokine ,  it promotes the immune cell migration for the phagocytosis. These belong to a set of monoclonal antibodies which have become a modern class of medicines used for treating various diseases such as cancer , cardiovascular and inflammation diseases. Interleukin 8 is in culture a 72 amino acid peptide in it's major form when it is secreted by macrophages.
 The scFv antibody fragments consist of variable regions of heavy (VH) and light chain (VL) of full antibodies that are joined by a linker sequence.
 
+<img src="https://github.com/bhuvnaik/Docking-scFv-IL8/assets/144937979/53fd2892-d0f1-4831-ba2d-79a3a6276b81" width="500" height="300">
+
+
 The model for IL8 is taken from the [PDB](https://www.rcsb.org/structure/2IL8) (PDB ID: 2IL8). This PDB file consists of 30 models, each with a different conformation of IL8 in a 3D structure. We have chosen the first model for our docking. The PDB library consists of the 3-Dimensional structure of the given protein and all the sequences and mutations of the fragments of the protein. The solution NMR method has been used to experimentally verify the protein structure and so far 30 various different conformers of the same molecule have been shown to exist.
 We use a homology based modeling pattern for this protein which consists of building the given protein based on the atomic resolution models of the constituent amino acids sequences.
+
+
+
 
 ## Global Range Molecular Matching (GRAMM)
 
@@ -19,6 +28,11 @@ GRAMM does not perform a statistical sampling of the model but produces an exhau
 
 
 We used the anti-IL8 scFv as the receptor and IL8 as the ligand.
+
+
+<img src="https://github.com/bhuvnaik/Docking-scFv-IL8/assets/144937979/b874e830-be3d-4e13-bf29-8ce905d696a4" width="500" height="300">
+
+
 
 ### Free Docking
 
@@ -91,16 +105,22 @@ The calculations are done for $36 \degree\text{C}$ as this is the temperature at
 
 Detailed results are available in the `PRODIGY` directory.
 
+
+<img src="https://github.com/bhuvnaik/Docking-scFv-IL8/assets/144937979/46b369c7-1b73-4c49-8780-d1ba46318517" width="500" height="300">
+
 ### Citations
 
 1. Vangone A. and Bonvin A.M.J.J. "Contact-based prediction of binding affinity in protein-protein complexes", eLife, 4, e07454 (2015).
 2. Xue L., Rodrigues J., Kastritis P., Bonvin A.M.J.J.*, Vangone A.*, "PRODIGY: a web-server for predicting the binding affinity in protein-protein complexes", Bioinformatics, doi:10.1093/bioinformatics/btw514 (2016).
+3. Andrusier N, Mashiach E, Nussinov R, Wolfson HJ (2008) Principles of flexible protein-protein docking. Proteins 73:271–289
+4. Karaca E, Bonvin AMJJ (2013) Advances in integrative modeling of biomolecular complexes. Methods 59:372–381 
 
 ### Other References
 
 1. *Ott, D.E. The peritoneum and the pneumoperitoneum: a review to improve clinical outcome. Gynecol Surg 1, 101–106 (2004). https://doi.org/10.1007/s10397-004-0019-y
 2. [Study](https://onlinelibrary.wiley.com/doi/10.1002/prot.25889) showing that GRAMM can successfully predict protein-protein interactions even for models of varying accuracy.
 3. [Study](https://onlinelibrary.wiley.com/doi/10.1002/prot.25380) indicating the effectiveness of GRAMM, and ranking it among the top performers in some CAPRI rounds.
+4. [Study](https://link.springer.com/chapter/10.1007/978-981-10-7347-2_14) indicating methods and tools used for protein-protein docking.
 
 ### Credits
 We would like to thank [Amar Singh](https://compbio.ku.edu/people/amar-singh) from the Center for Computational Biology at the University of Kansas for answering our queries regarding the use of GRAMM, particularly with respect to the evaluation of the docking results. 
