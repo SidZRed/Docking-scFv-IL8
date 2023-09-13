@@ -63,7 +63,7 @@ We will be taking the top models from both the free docking and template-based d
 #### AutoDock-
 [AutoDock3](https://autodock.scripps.edu/), a suite of open-source software for docking and virtual screening. AutoDock consists of several programs, such as AutoDock4, which performs the docking calculations using a Lamarckian genetic algorithm and a scoring function that accounts for torsional entropy; AutoGrid4, which pre-calculates the grid maps for the receptor; and AutoDockTools, which provides a graphical user interface for preparing and analyzing the docking inputs and outputs. 
 
-AutoDock hasn't been utilized by us for this protein modelling as it does not provide for appropriate calculations for large molecules of ligands that we have used. It is unable to account for flexibility of cyclic and macro-cyclic ligands. It also requires much higher computational and graphical power for running the model which could amount to a significant cost of operation for a large ligand molecule like ours. Also it often leads to unreliable results when small molecules are docked into flexible binding sites. Since our protein contains a larger sequence (72 in general) of amino acid structure , it is not suitable to use AutoDock directly for docking our protein.
+AutoDock hasn't been utilized by us for this protein modelling as it does not provide for appropriate calculations for large molecules of ligands that we have used. It is unable to account for flexibility of cyclic and macro-cyclic ligands. It also requires much higher computational and graphical power for running the model which could amount to a significant cost of operation for a large ligand molecule like ours. Also it often leads to unreliable results when small molecules are docked into flexible binding sites. Since our protein contains a larger sequence (72 in general and 8452 Da) of amino acid structure , it is not suitable to use AutoDock directly for docking our protein.
 
 Other molecular docking softwares:
 * SwissDock 
@@ -80,6 +80,9 @@ a molecule being defined as an isolated group of amino acids sharing
 a common chain identifier. In specific cases, for example
 antibody-antigen complexes, some chains should be considered as a
 single molecule. The PRODIGY server implements our simple but highly effective predictive model based on intermolecular contacts and properties derived from non-interface surface.
+
+<img src="https://github.com/bhuvnaik/Docking-scFv-IL8/assets/144937979/46b369c7-1b73-4c49-8780-d1ba46318517" width="500" height="300">
+
 
 
 ### Citations
@@ -106,7 +109,7 @@ The calculations are done for $36 \degree\text{C}$ as this is the temperature at
 Detailed results are available in the `PRODIGY` directory.
 
 
-<img src="https://github.com/bhuvnaik/Docking-scFv-IL8/assets/144937979/46b369c7-1b73-4c49-8780-d1ba46318517" width="500" height="300">
+
 
 ### Citations
 
